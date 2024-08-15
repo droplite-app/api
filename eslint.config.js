@@ -1,24 +1,15 @@
-const path = require('path');
+import { defineConfig } from 'eslint';
 
-module.exports = {
-  ignorePatterns: ["node_modules", "dist"], // Dosyaları yok sayma
-  parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint"],
-  extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier",
-  ],
-  rules: {
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/explicit-function-return-type": "off",
+export default defineConfig({
+  ignores: ['node_modules/', 'dist/'], // ignorePatterns yerine ignores
+  // diğer konfigürasyon ayarlarınız
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
   },
-  overrides: [
-    {
-      files: ["*.ts"], // Sadece TypeScript dosyaları için geçerli
-      parserOptions: {
-        project: path.resolve(__dirname, "tsconfig.json"),
-      },
-    },
-  ],
-};
+  rules: {
+    // kendi kurallarınız
+  },
+});
