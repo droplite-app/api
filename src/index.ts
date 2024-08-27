@@ -1,15 +1,24 @@
-import { Express } from 'express';
 import express, { Request, Response } from 'express';
+import db from './knex';
 
 const app = express();
 const port = 3000;
 
-//middleware
+// Middleware
 app.use(express.json());
 
-//simple get route
+// Basic GET Route
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
+});
+
+app.get('/users', async (req: Request, res: Response) => {
+  try {
+    const users = await db('table-1').select('*');
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching users', error });
+  }
 });
 
 app.listen(port, () => {
