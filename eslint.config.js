@@ -1,18 +1,16 @@
-const { ESLint } = require("eslint");
+const { ESLint } = require('eslint');
 
 module.exports = [
   {
-    files: ["**/*.ts"],
+    files: ['**/*.ts'],
     languageOptions: {
-      parser: require("@typescript-eslint/parser"),
+      parser: require('@typescript-eslint/parser'),
       parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
-        project: "./tsconfig.json",
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        project: './tsconfig.json',
       },
     },
-    rules: {
-      
-    },
+    rules: {},
   },
 ];
