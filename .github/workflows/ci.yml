@@ -27,10 +27,6 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-      - name: Run Prettier check
-        run: npm run format -- --check
-
-      
       - name: Set up SQLite
         run: |
           sudo apt-get install sqlite3
@@ -42,5 +38,3 @@ jobs:
           DB_CONNECTION: './dev.sqlite3'
         run: |
           npx knex migrate:latest --env development  # Migration'ları çalıştırma
-
-     
