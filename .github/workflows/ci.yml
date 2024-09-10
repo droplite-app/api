@@ -29,3 +29,18 @@ jobs:
 
       - name: Run Prettier check
         run: npm run format -- --check
+
+      
+      - name: Set up SQLite
+        run: |
+          sudo apt-get install sqlite3
+          touch ./dev.sqlite3  # SQLite veri tabanı dosyasını oluşturuyoruz
+
+      - name: Run migrations
+        env:
+          DB_CLIENT: sqlite3
+          DB_CONNECTION: './dev.sqlite3'
+        run: |
+          npx knex migrate:latest --env development  # Migration'ları çalıştırma
+
+     
