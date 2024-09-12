@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import db from './knex';
-//comment
+
 const app = express();
 const port = 3000;
 
