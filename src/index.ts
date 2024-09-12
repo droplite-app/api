@@ -24,9 +24,9 @@ app.post('/users', async (req: Request, res: Response) => {
   }
 
   try {
-    await db('users').insert({ email, password });
-    const token = jwt.sign({ email }, JWT_SECRET, { expiresIn: '1h' });
-    res.status(201).json({ message: 'User created successfully', token });
+    const [userId] = await db('users').insert({ email, password }).returning('id');
+    const token = jwt.sign({ userId }, JWT_SECRET, { expiresIn: '1h' });
+    res.status(201).json({ message: 'User created successfully', token, userId });
   } catch (error: any) {
     console.error('Error creating user:', error); 
     if (error.code === 'ER_DUP_ENTRY') {
