@@ -21,6 +21,7 @@
     "jsonwebtoken": "^9.0.2",
     "knex": "^3.1.0",
     "mysql2": "^3.11.0",
+    "robust-validator": "^1.1.0",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
