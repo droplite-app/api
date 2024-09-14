@@ -30,5 +30,5 @@ export const postLoginHandler = async (
   //token
   const token = jwt.sign({ userId: user.id }, JWT_SECRET);
 
-  res.status(200).json({ message: 'Login successful', token, userId: user.id });
+  res.status(200).json({token, userId: user.id });
 };
