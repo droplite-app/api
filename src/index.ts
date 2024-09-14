@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { postUserHandler } from './routes/users/postUsers';
 import errorHandler from './middlewares/errorhandler';
+import { postLoginHandler } from './routes/users/postLogin';
 
 dotenv.config();
 const app = express();
@@ -12,6 +13,8 @@ app.use(express.json());
 app.use(cors({ origin: 'http://localhost:5173' }));
 
 app.post('/users', postUserHandler);
+
+app.post('/login', postLoginHandler);
 
 app.use(errorHandler);
 
