@@ -11,7 +11,7 @@ const errorHandler = (
   if (env !== 'production') {
     console.error(err.stack);
     return res.status(500).json({ error: err.message, stack: err.stack });
-  } 
+  }
   return res.status(500).json({ message: 'An error occurred' });
 };
 

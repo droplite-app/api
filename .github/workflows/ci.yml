@@ -30,6 +30,4 @@ jobs:
       - name: Set up SQLite
         run: |
           sudo apt-get install sqlite3
-          touch ./dev.sqlite3 
-
-
+          touch ./dev.sqlite3
