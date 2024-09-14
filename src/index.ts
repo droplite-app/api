@@ -14,9 +14,9 @@ app.use(cors({ origin: 'http://localhost:5173' }));
 
 app.post('/users', postUserHandler);
 
-app.use(errorHandler);
-
 app.post('/login', postLoginHandler);
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
