@@ -1,25 +1,19 @@
-import express, { Request, Response } from 'express';
-import db from './knex';
-//comment
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { postUserHandler } from './routes/users/postUsers';
+import errorHandler from './middlewares/errorhandler';
+
+dotenv.config();
 const app = express();
 const port = 3000;
 
-// Middleware
 app.use(express.json());
+app.use(cors({ origin: 'http://localhost:5173' }));
 
-// Basic GET Route
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
+app.post('/users', postUserHandler);
 
-app.get('/users', async (req: Request, res: Response) => {
-  try {
-    const users = await db('table-1').select('*');
-    res.json(users);
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching users', error });
-  }
-});
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
