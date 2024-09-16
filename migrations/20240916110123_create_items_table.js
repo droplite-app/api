@@ -6,22 +6,22 @@ exports.up = function (knex) {
       .unsigned()
       .notNullable()
       .references('id')
-      .inTable('users')
-    
+      .inTable('users');
+
     table
       .integer('bucket_id')
       .unsigned()
       .notNullable()
       .references('id')
-      .inTable('buckets')
-      
+      .inTable('buckets');
+
     table
       .integer('parent_id')
       .unsigned()
       .nullable()
       .references('id')
-      .inTable('items')
-      
+      .inTable('entries');
+
     table.string('name', 255).notNullable();
     table.enu('item_type', ['folder', 'file']).notNullable();
     table.string('path', 512).nullable();
