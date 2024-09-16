@@ -23,12 +23,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run migrations with SQLite
-        env:
-          NODE_ENV: test
+      - name: Set up SQLite
         run: |
+          sudo apt-get update
           sudo apt-get install -y sqlite3
-          npm test
+          touch ./test.sqlite3 
+          npx knex migrate:latest
 
   lint-and-format:
     runs-on: ubuntu-latest
@@ -49,5 +49,6 @@ jobs:
 
       - name: Set up SQLite
         run: |
+          sudo apt-get update
           sudo apt-get install -y sqlite3
           touch ./dev.sqlite3
