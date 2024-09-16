@@ -27,8 +27,13 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y sqlite3
-          touch ./test.sqlite3 
-          npx knex migrate:latest
+          touch ./test.sqlite3  # Create the SQLite database file for testing
+
+      - name: Run migrations with SQLite
+        env:
+          NODE_ENV: test 
+        run: |
+          npx knex migrate:latest  # Run migrations using Knex
 
   lint-and-format:
     runs-on: ubuntu-latest
