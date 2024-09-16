@@ -31,3 +31,19 @@ jobs:
         run: |
           sudo apt-get install sqlite3
           touch ./dev.sqlite3
+
+      - name: Set environment to test
+        run: |
+          echo "Setting up environment for testing..."
+        env:
+          NODE_ENV: test
+
+      - name: Run migrations in SQLite
+        run: npx knex migrate:latest --env test
+        env:
+          NODE_ENV: test
+
+      - name: Run tests
+        run: npm test
+        env:
+          NODE_ENV: test
