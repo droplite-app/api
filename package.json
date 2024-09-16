@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "tests:migration": "NODE_ENV=test npx knex migrate:latest --env test",
     "dev": "ts-node-dev src/index.ts",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",

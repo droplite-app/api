@@ -9,9 +9,34 @@ on:
       - main
 
 jobs:
+  migration-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Set up SQLite
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sqlite3
+          touch ./test.sqlite3  # Create the SQLite database file for testing
+
+      - name: Run migrations with SQLite
+        env:
+          NODE_ENV: test 
+        run: |
+          npx knex migrate:latest  # Run migrations using Knex
+
   lint-and-format:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -27,7 +52,4 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-      - name: Set up SQLite
-        run: |
-          sudo apt-get install sqlite3
-          touch ./dev.sqlite3
+     
