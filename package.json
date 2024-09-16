@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"No test specified, skipping tests\"",
     "dev": "ts-node-dev src/index.ts",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "lint": "eslint . ",
     "prepare": "husky"
+     
   },
   "keywords": [],
   "author": "",
