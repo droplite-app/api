@@ -7,21 +7,21 @@ exports.up = function (knex) {
       .notNullable()
       .references('id')
       .inTable('users')
-      .onDelete('SET NULL');
+    
     table
       .integer('bucket_id')
       .unsigned()
       .notNullable()
       .references('id')
       .inTable('buckets')
-      .onDelete('SET NULL');
+      
     table
       .integer('parent_id')
       .unsigned()
       .nullable()
       .references('id')
       .inTable('items')
-      .onDelete('CASCADE');
+      
     table.string('name', 255).notNullable();
     table.enu('item_type', ['folder', 'file']).notNullable();
     table.string('path', 512).nullable();
@@ -36,5 +36,5 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTable('items');
+  return knex.schema.dropTable('entries');
 };
