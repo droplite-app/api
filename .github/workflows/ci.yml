@@ -52,4 +52,20 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+
+  # Docker Setup & Build Job
+  build-docker-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Docker Image
+        run: docker build -t droplite-api .
+
      
+
