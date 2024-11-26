@@ -8,8 +8,7 @@
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "lint": "eslint . ",
-    
-    "build":"tsc"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
