@@ -15,7 +15,7 @@ const corsOptions = {
     origin: string | undefined,
     callback: (err: Error | null, allow?: boolean) => void,
   ) {
-    if (origin && whitelist.indexOf(origin) !== -1) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -25,7 +25,6 @@ const corsOptions = {
 
 app.use(express.json());
 app.use(cors(corsOptions));
-app.use(cors({ origin: 'http://localhost:5173' }));
 app.post('/users', postUserHandler);
 app.post('/login', postLoginHandler);
 app.use(errorHandler);
