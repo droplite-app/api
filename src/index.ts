@@ -7,7 +7,7 @@ import { postLoginHandler } from './routes/users/postLogin';
 
 dotenv.config();
 const app = express();
-const port = 3000;
+const port = process.env.APP_PORT;
 
 const whitelist = ['http://localhost:5173', 'https://cloud.droplite.app'];
 const corsOptions = {
