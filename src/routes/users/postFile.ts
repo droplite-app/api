@@ -5,7 +5,7 @@ import fs from 'fs';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const uploadRouter = express.Router();
+
 
 const s3 = new S3Client({
   region: process.env.AWS_REGION,
@@ -16,8 +16,7 @@ const s3 = new S3Client({
 });
 const upload = multer({ dest: 'uploads/' });
 
-uploadRouter.post(
-  '/upload',
+export const postFileHandler = [
   upload.single('file'),
   async (req: Request, res: Response) => {
     try {
@@ -46,6 +45,4 @@ uploadRouter.post(
         .json({ error: 'Dosya yüklenirken bir hata oluştu!' });
     }
   },
-);
-
-export default uploadRouter;
+];

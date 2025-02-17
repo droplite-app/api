@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import { postUserHandler } from './routes/users/postUsers';
 import errorHandler from './middlewares/errorhandler';
 import { postLoginHandler } from './routes/users/postLogin';
-import uploadRouter from './routes/users/postFile';
+import { postFileHandler } from './routes/users/postFile';
 
 dotenv.config();
 const app = express();
@@ -28,8 +28,8 @@ app.use(express.json());
 app.use(cors(corsOptions));
 app.post('/users', postUserHandler);
 app.post('/login', postLoginHandler);
+app.post('/upload', postFileHandler);
 app.use(errorHandler);
-app.use('/', uploadRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
